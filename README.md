@@ -1,6 +1,6 @@
 # SCChallengeCircleDetection
 TODO:
-Add multithreading
-Remove unnecessary loops
-Allow detection of more then one circle
+Add multithreading /n
+Remove unnecessary loops /n
+Allow detection of more then one circle /n
 Add a Gausing Blur
