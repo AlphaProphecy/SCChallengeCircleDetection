@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import java.io.*;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import java.util.ArrayList;
@@ -27,8 +26,10 @@ public class ImagePanel extends Canvas{
 	public ImagePanel() {
 		
 		try {
-			//image = ImageIO.read(new File(".\\FILE.jpg"));
-			image = ImageIO.read(new File(".\\FILE.jpg"));
+			System.out.println("Enter the name of the file");
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			String fname = br.readLine();
+			image = ImageIO.read(new File(".\\" + fname));
 			width = image.getWidth();
 			height = image.getHeight();
 			image = sobelOp(greyScale(image));
@@ -115,8 +116,6 @@ public class ImagePanel extends Canvas{
 		
 	
 	private Integer arrayOutProt (BufferedImage br, int i, int ii){
-		//System.out.println("x:" +i + " y"+ii);
-		
 		try {
 			return new Color(br.getRGB(ii,i)).getRed();
 		} catch (Exception e) {
@@ -135,8 +134,6 @@ public class ImagePanel extends Canvas{
 		Integer my = 0;
 		for (Integer[] m: marked) {
 			for (int i = -width/2; i < width/2; i++) { // radius
-				//System.out.println(i);
-				//System.out.println(arrayx[m[0]][m[1]] + " " + arrayy[m[0]][m[1]]);
 				if (Math.abs(i) > 5) { // Filtering of tiny circles
 					double angle;
 					if (!arrayy[m[0]][m[1]].equals(0)) { // Removes / 0
@@ -150,8 +147,6 @@ public class ImagePanel extends Canvas{
 						int x = (int) (i * Math.cos(a)) + m[1];
 						int y = (int) (i * Math.sin(a)) + m[0];
 						if (x >= 0 && x < width-1 && y >=0 && y <height-1) {
-							//System.out.println(x + " " + y + " " + ((int)(i+width/2)));
-							
 							houghSpace[(int)(i+width/2)][x][y] += 1;
 							if (houghSpace[(int)(i+width/2)][x][y] > max) {
 								max = houghSpace[(int)(i+width/2)][x][y];
@@ -166,7 +161,6 @@ public class ImagePanel extends Canvas{
 		}
 		
 		System.out.println(mr + " " + mx +" " + my );
-		
 		
 		for (int a = 0; a < 360; a++) {
 			out.setRGB((int)(mr*Math.cos(a)) + mx, (int)(mr*Math.sin(a)) + my, new Color(255,0,0).getRGB());
