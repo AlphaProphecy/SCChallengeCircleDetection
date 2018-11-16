@@ -27,8 +27,8 @@ public class ImagePanel extends Canvas{
 	public ImagePanel() {
 		
 		try {
-			//image = ImageIO.read(new File("C:\\Users\\Samuel\\OneDrive\\eclipse-workspace\\SCChallengeCircleDetection\\bin\\Example.png"));
-			image = ImageIO.read(new File("C:\\Users\\srowb\\OneDrive\\eclipse-workspace\\SCChallengeCircleDetection\\bin\\Example5.jpg"));
+			//image = ImageIO.read(new File(".\\FILE.jpg"));
+			image = ImageIO.read(new File(".\\FILE.jpg"));
 			width = image.getWidth();
 			height = image.getHeight();
 			image = sobelOp(greyScale(image));
